@@ -53,18 +53,24 @@ class EntryAdmin(admin.ModelAdmin):
         (_('Metadatas'), {
             'fields': ('featured', 'excerpt', 'authors', 'related'),
             'classes': ('collapse', 'collapse-closed')}),
-        (None, {'fields': ('categories', 'tags', 'slug')}))
+        (None, {'fields': (
+            'categories',
+            # 'tags',
+            'slug')}))
     list_filter = (CategoryListFilter, AuthorListFilter,
                    'publication_date', 'sites', 'status')
     list_display = ('get_title', 'get_authors', 'get_categories',
-                    'get_tags', 'get_sites', 'get_is_visible', 'featured',
+                    # 'get_tags',
+                    'get_sites', 'get_is_visible', 'featured',
                     'get_short_url', 'publication_date')
     sortable_by = ('publication_date', 'featured')
     radio_fields = {'content_template': admin.VERTICAL,
                     'detail_template': admin.VERTICAL}
     filter_horizontal = ('categories', 'authors', 'related')
     prepopulated_fields = {'slug': ('title', )}
-    search_fields = ('title', 'excerpt', 'content', 'tags')
+    search_fields = ('title', 'excerpt', 'content'
+                     # , 'tags'
+                     )
     actions = ['make_mine', 'make_published', 'make_hidden',
                'close_comments', 'close_pingbacks', 'close_trackbacks',
                'ping_directories', 'put_on_top',

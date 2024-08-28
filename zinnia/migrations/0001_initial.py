@@ -171,11 +171,5 @@ class Migration(migrations.Migration):
                 related_name='entries', verbose_name='authors',
                 to='zinnia.Author', blank=True),
             preserve_default=True,
-        ),
-        migrations.AlterIndexTogether(
-            name='entry',
-            index_together=set([('status', 'creation_date',
-                                 'start_publication', 'end_publication'),
-                                ('slug', 'creation_date')]),
-        ),
+        )
     ]
